@@ -1,0 +1,83 @@
+# Car Rental System
+
+# Overview
+
+This project is a simple console-based Car Rental System implemented in C. It allows users to rent and return cars, view available cars, and check the rental status of each car. The system is designed to handle up to 10 cars, and each car has a name and a rental price.
+
+# Features
+
+- **Display Available Cars**: View the list of cars that are currently available for rent.
+- **Rent a Car**: Choose a car to rent, specify the number of days, and the system will calculate the total cost.
+- **Return a Car**: Return a rented car, making it available for others.
+- **Display Rental Status**: View the rental status of all cars, showing whether each car is rented or available.
+
+# How to Use
+
+1. **Compile the Code**: 
+    ```bash
+    gcc car_rental_system.c -o car_rental_system
+    ```
+
+2. **Run the Program**:
+    ```bash
+    ./car_rental_system
+    ```
+
+3. **Follow the On-Screen Instructions**:
+    - Choose options from the menu by entering the corresponding number.
+    - Rent or return cars by specifying the car number.
+
+## Project Structure
+
+- **Global Variables**:
+  - `carNames`: Array to store the names of the cars.
+  - `carPrices`: Array to store the rental prices of the cars.
+  - `carRented`: Boolean array to keep track of whether a car is currently rented.
+
+- **Functions**:
+  - `displayMenu()`: Displays the main menu of the system.
+  - `displayAvailableCars()`: Shows the list of cars that are available for rent.
+  - `rentCar()`: Allows the user to rent a car and calculates the total cost based on the number of days.
+  - `returnCar()`: Handles the return of a rented car.
+  - `displayRentalStatus()`: Displays the current rental status of all cars.
+
+# Example Usage
+
+# Renting a Car
+
+1. Start the program and select the "Rent a Car" option from the menu.
+2. Enter the car number you wish to rent.
+3. Specify the number of days you want to rent the car for.
+4. The system will calculate the total rental cost and prompt you to confirm the payment.
+5. After confirming the payment, the car will be marked as rented.
+
+# Returning a Car
+
+1. Start the program and select the "Return a Car" option from the menu.
+2. Enter the car number you wish to return.
+3. The system will mark the car as available for rent again.
+
+# Example Output
+
+```plaintext
+=================== Car Rental System Menu =======================
+==                                                              ==
+==            Hello and Welcome to RENT A CAR                   ==
+==             Thank you for choosing us                        ==
+==                                                              ==
+==            1. Display Available Cars                         ==
+==            2. Rent a Car                                     ==
+==            3. Return a Car                                   ==
+==            4. Display Rental Status                          ==
+==            5. Exit                                           ==
+==================================================================
+Enter your choice: 2
+
+===============================================
+Enter the number of the car you want to rent: 1
+
+Enter number of days: 3
+
+Please pay Rs.2100 and enter 1 after payment: 1
+
+You have successfully rented the Car. Car1.
