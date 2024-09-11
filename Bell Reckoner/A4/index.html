@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legal Services Form</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Ministry_of_Law_and_Justice.svg" alt="Ministry of Law & Justice" class="logo">
+    </div>
+    <form id="legalForm">
+        <div class="form-group">
+            <label for="court">Search court</label>
+            <select id="court" name="court">
+                <option value="">Select court</option>
+                <option value="supreme">Supreme Court</option>
+                <option value="high">High Court</option>
+                <option value="district">District Court</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="lawyer">Find Lawyer</label>
+            <select id="lawyer" name="lawyer">
+                <option value="">Select Lawyer</option>
+                <option value="family">Family Lawyer</option>
+                <option value="criminal">Criminal Lawyer</option>
+                <option value="business">Business Lawyer</option>
+            </select>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+<script src="scripts.js"></script>
+</body>
+</html>

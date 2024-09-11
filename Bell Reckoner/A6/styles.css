@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.app-container {
+    width: 360px;
+    background-color: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.app-header {
+    background-color: #f2ff00;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content .ministry-info {
+    display: flex;
+    align-items: center;
+}
+
+.header-content .ministry-info img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+.header-content .profile-icon img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.app-welcome h2 {
+    margin: 10px 0;
+}
+
+.app-welcome p {
+    font-size: 14px;
+}
+
+.highlight-text {
+    color: #ffa500;
+}
+
+.case-utility {
+    padding: 20px;
+    text-align: center;
+}
+
+.case-utility h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.registered-cases {
+    background-color: #f1f1f1;
+    padding: 30px;
+    border-radius: 10px;
+    display: inline-block;
+    width: 80%;
+    text-align: center;
+}
+
+.registered-cases img {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.app-footer {
+    background-color: #eaeaea;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-icon {
+    text-align: center;
+}
+
+.footer-icon img {
+    width: 30px;
+    margin-bottom: 5px;
+}
+
+.footer-icon p {
+    font-size: 12px;
+    color: #333;
+}
