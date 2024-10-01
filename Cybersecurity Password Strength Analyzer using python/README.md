@@ -1,4 +1,4 @@
-#The Code Explanation:-
+# The Code Explanation:-
 
 Let's break down the script to understand how it evaluates password strength.
 
