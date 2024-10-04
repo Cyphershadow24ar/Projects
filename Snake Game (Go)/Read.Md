@@ -1,4 +1,4 @@
-Setting Up the Environment
+# Setting Up the Environment
 Initialize a New Go Module
 
 Open your terminal or command prompt, navigate to your desired project directory, and initialize a new Go module:
