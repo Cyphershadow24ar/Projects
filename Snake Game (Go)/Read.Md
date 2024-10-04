@@ -80,3 +80,95 @@ github.com/hajimehoshi/ebiten/v2 and ebitenutil for game development.
 # Constants:
 
 Define screen dimensions, grid size, initial snake size, and game speed.
+
+# 2. Data Structures
+go
+type Direction int
+
+const (
+	Up Direction = iota
+	Down
+	Left
+	Right
+)
+
+type Point struct {
+	x int
+	y int
+}
+
+type Game struct {
+	snake       []Point
+	direction   Direction
+	food        Point
+	gameOver    bool
+	score       int
+	lastMove    time.Time
+	changeDirCh chan Direction
+}
+
+Direction: Enum to represent the snake's movement direction.
+Point: Represents coordinates on the grid.
+Game: Holds all game-related states, including the snake's body, direction, food position, score, and game status.
+
+# 3. Game Initialization
+go
+func NewGame() *Game {
+	// Initialization logic
+}
+
+Initializes the snake in the middle of the screen.
+Places the first piece of food randomly on the grid.
+
+# 4. Game Logic
+Updating the Game State
+go
+func (g *Game) Update() error {
+	// Update logic
+}
+
+Handles direction changes based on user input.
+Moves the snake at set intervals.
+Checks for collisions and food consumption.
+
+Moving the Snake
+go
+func (g *Game) move() {
+	// Movement logic
+}
+
+Calculates the new head position based on the current direction.
+Checks for collisions with walls or itself.
+Grows the snake if food is eaten; otherwise, moves the snake forward.
+
+# 5. Rendering the Game
+go
+func (g *Game) Draw(screen *ebiten.Image) {
+	// Drawing logic
+}
+
+Clears the screen.
+Draws the snake and food as colored rectangles.
+Displays the current score.
+Shows a "Game Over" message when applicable.
+
+# 6. Handling Input
+go
+func (g *Game) handleKeys() {
+	// Input handling logic
+}
+
+Listens for arrow keys or WASD to change the snake's direction.
+Allows restarting the game by pressing R after a game over.
+
+# 7. Main Function
+go
+func main() {
+	// Entry point of the game
+}
+
+Seeds the random number generator.
+Initializes the game.
+Sets up the window properties.
+Starts the game loop and input handling concurrently.
+
