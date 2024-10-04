@@ -8,6 +8,6 @@ This Repo has many projects on Different Programming language like C , C++, Pyth
 3. Red Black Tree - C 
 4. Snake Water 7 Gun - Python 
 5. Ai Assistant - Python 
-6.
+6. Cybersecurity: Password Strength Analyzer - Python
 7. Snake Game - GO lang
   
