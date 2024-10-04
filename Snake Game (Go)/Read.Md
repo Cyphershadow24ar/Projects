@@ -17,3 +17,26 @@ Fetch the Ebiten library using go get:
 go get github.com/hajimehoshi/ebiten/v2
 
 This command downloads the Ebiten library and adds it to your go.mod file.
+
+# Running the Game
+# Navigate to Your Project Directory
+Ensure you're in the snake-game directory where main.go is located.
+
+# Build and Run the Game
+You can run the game directly using the go run command:
+bash
+go run main.go
+
+# Alternatively, you can build an executable:
+bash
+go build
+
+This command creates an executable file named snake-game (or snake-game.exe on Windows) in your directory. Run it by executing:
+
+# On macOS/Linux:
+bash
+./snake-game
+
+# On Windows:
+bash
+snake-game.exe
