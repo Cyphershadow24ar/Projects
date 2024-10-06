@@ -1,7 +1,5 @@
 # Snake Game in Go
 
-![Snake Game Banner](https://github.com/your-username/snake-game/blob/main/assets/banner.png)
-
 *Experience the classic Snake game reimagined with Go and Ebiten!*
 
 ## Table of Contents
