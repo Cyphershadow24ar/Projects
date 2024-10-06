@@ -80,6 +80,20 @@ Follow these steps to set up your development environment for the Snake Game.
    mkdir snake-game
    cd snake-game
 
+Initialize Go Module:
+
+bash
+go mod init snake-game
+
+This command initializes a new Go module and creates a go.mod file to manage dependencies.
+
+Install Ebiten
+Fetch Ebiten Library:
+
+bash
+go get github.com/hajimehoshi/ebiten/v2
+
+This command downloads the Ebiten library and adds it to your go.mod file.
 
 # Running the Game
 # Navigate to Your Project Directory
