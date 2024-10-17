@@ -10,4 +10,5 @@ This Repo has many projects on Different Programming language like C , C++, Pyth
 5. Ai Assistant - Python 
 6. Cybersecurity: Password Strength Analyzer - Python
 7. Snake Game - GO lang
+8. bail-reckoner-infographic - Typescript
   
