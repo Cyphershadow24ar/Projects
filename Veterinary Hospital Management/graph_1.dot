@@ -1,0 +1,34 @@
+graph G {
+    "CVRGU" [label="CVRGU"];
+    "Hello Pet Cares" [label="Hello Pet Cares"];
+    "Pet Animal Hospital" [label="Pet Animal Hospital"];
+    "Govt. Veterinary Hospital" [label="Govt. Veterinary Hospital"];
+    "Tarzoo Pet Care" [label="Tarzoo Pet Care"];
+    "Petvetcure Clinic" [label="Petvetcure Clinic"];
+    "Vet Surgery Dept. OUAT" [label="Vet Surgery Dept. OUAT"];
+    "Veterinary Dispensary" [label="Veterinary Dispensary"];
+    "Pets Paradise Clinic" [label="Pets Paradise Clinic"];
+    "Pet Clinic Ruchika" [label="Pet Clinic Ruchika"];
+    "Reproduction Dept. OUAT" [label="Reproduction Dept. OUAT"];
+    "CVRGU" -- "Hello Pet Cares" [label="10 km"];
+    "CVRGU" -- "Pet Animal Hospital" [label="10 km"];
+    "CVRGU" -- "Govt. Veterinary Hospital" [label="15 km"];
+    "CVRGU" -- "Tarzoo Pet Care" [color=red, penwidth=2.0, label="12 km"];
+    "CVRGU" -- "Petvetcure Clinic" [label="10 km"];
+    "CVRGU" -- "Vet Surgery Dept. OUAT" [label="16 km"];
+    "CVRGU" -- "Veterinary Dispensary" [label="18 km"];
+    "CVRGU" -- "Pets Paradise Clinic" [label="10 km"];
+    "CVRGU" -- "Pet Clinic Ruchika" [label="8 km"];
+    "CVRGU" -- "Reproduction Dept. OUAT" [label="14 km"];
+    "Hello Pet Cares" -- "Pet Animal Hospital" [label="1 km"];
+    "Hello Pet Cares" -- "Govt. Veterinary Hospital" [label="6 km"];
+    "Hello Pet Cares" -- "Tarzoo Pet Care" [label="8 km"];
+    "Pet Animal Hospital" -- "Govt. Veterinary Hospital" [label="6 km"];
+    "Pet Animal Hospital" -- "Petvetcure Clinic" [label="5 km"];
+    "Govt. Veterinary Hospital" -- "Tarzoo Pet Care" [label="4 km"];
+    "Tarzoo Pet Care" -- "Petvetcure Clinic" [label="3 km"];
+    "Tarzoo Pet Care" -- "Pets Paradise Clinic" [label="5 km"];
+    "Petvetcure Clinic" -- "Vet Surgery Dept. OUAT" [label="2 km"];
+    "Vet Surgery Dept. OUAT" -- "Veterinary Dispensary" [label="4 km"];
+    "Veterinary Dispensary" -- "Reproduction Dept. OUAT" [label="3 km"];
+}
