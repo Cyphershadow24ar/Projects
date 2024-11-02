@@ -1,0 +1,33 @@
+graph G {
+    "Fire Station" [label="Fire Station"];
+    "Market Building Area" [label="Market Building Area"];
+    "Rasulgarh" [label="Rasulgarh"];
+    "Chandaka Industrial Area" [label="Chandaka Industrial Area"];
+    "Saheed Nagar" [label="Saheed Nagar"];
+    "Khandagiri" [label="Khandagiri"];
+    "Nayapalli" [label="Nayapalli"];
+    "Patia" [label="Patia"];
+    "Chandrasekharpur" [label="Chandrasekharpur"];
+    "Old Town" [label="Old Town"];
+    "Fire Station" -- "Market Building Area" [label="6 km"];
+    "Fire Station" -- "Chandaka Industrial Area" [label="12 km"];
+    "Fire Station" -- "Saheed Nagar" [label="7 km"];
+    "Fire Station" -- "Khandagiri" [label="9 km"];
+    "Fire Station" -- "Patia" [label="15 km"];
+    "Market Building Area" -- "Rasulgarh" [label="5 km"];
+    "Market Building Area" -- "Saheed Nagar" [label="2 km"];
+    "Market Building Area" -- "Old Town" [label="8 km"];
+    "Rasulgarh" -- "Chandaka Industrial Area" [label="8 km"];
+    "Rasulgarh" -- "Khandagiri" [label="3 km"];
+    "Rasulgarh" -- "Patia" [label="10 km"];
+    "Chandaka Industrial Area" -- "Khandagiri" [label="6 km"];
+    "Chandaka Industrial Area" -- "Nayapalli" [label="4 km"];
+    "Saheed Nagar" -- "Nayapalli" [label="3 km"];
+    "Saheed Nagar" -- "Chandrasekharpur" [label="5 km"];
+    "Khandagiri" -- "Nayapalli" [label="2 km"];
+    "Nayapalli" -- "Patia" [label="7 km"];
+    "Patia" -- "Chandrasekharpur" [label="2 km"];
+    "Chandrasekharpur" -- "Old Town" [label="6 km"];
+    
+
+}
