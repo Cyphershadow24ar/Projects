@@ -13,3 +13,4 @@ This Repo has many projects on Different Programming language like C , C++, Pyth
 8. bail-reckoner-infographic - Typescript
 9. Hospital Management System - Python & Mysql
 10. Airline Booking System - C  (Dijkstra's Algorithm)
+11. Veterinary Hospital Management -C (Dijkstra's ALgorithm)
