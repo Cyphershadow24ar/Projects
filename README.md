@@ -10,8 +10,7 @@ This Repo has many projects on Different Programming language like C , C++, Pyth
 5. Ai Assistant - Python 
 6. Cybersecurity: Password Strength Analyzer - Python
 7. Snake Game - GO lang
-8. bail-reckoner-infographic - Typescript
-9. Hospital Management System - Python & Mysql
-10. Airline Booking System - C  (Dijkstra's Algorithm)
-11. Veterinary Hospital Management -C (Dijkstra's ALgorithm)
+8. Hospital Management System - Python & Mysql
+9. Airline Booking System - C  (Dijkstra's Algorithm)
+10. Veterinary Hospital Management -C (Dijkstra's ALgorithm)
 
