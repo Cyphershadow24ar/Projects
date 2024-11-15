@@ -2,75 +2,77 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define V 13  // Define the number of vertices (clinics) in the graph
-#define INF 99999  // Define a large number as infinity for unreachable nodes
+// Define the number of vertices (clinics) and a large value to represent infinity
+#define V 13  // Adjusted size for the number of clinics
+#define INF 99999  // A high value used to indicate no connection between vertices
 
-// Function to save the shortest path to a .dot file for visualization with Graphviz
+// Function to save the graph and shortest path into a DOT file for visualization
 void saveToDotFile(int parent[], int dist[], int graph[V][V], char *vertex[], int src, int dest) {
-    FILE *f = fopen("graph.dot", "w");  // Open file in write mode
-    if (f == NULL) {  // Check if file opened successfully
+    FILE *f = fopen("graph.dot", "w");  // Open a file to write the DOT representation
+    if (f == NULL) {  // Handle file opening errors
         printf("Error opening file!\n");
         return;
     }
-    fprintf(f, "graph G {\n");  // Start the Graphviz .dot file
-
-    // Write each vertex to the file with its label
+    fprintf(f, "graph G {\n");  // Start the DOT graph definition
+    
+    // Add each vertex to the DOT graph
     for (int i = 0; i < V; i++) {
         fprintf(f, "    \"%s\" [label=\"%s\"];\n", vertex[i], vertex[i]);
     }
-
-    // Write edges with weights (distances) labeled in km
+    
+    // Add all edges to the graph with weights
     for (int i = 0; i < V; i++) {
-        for (int j = i + 1; j < V; j++) {
-            if (graph[i][j] != 0 && graph[i][j] != INF) {
+        for (int j = i + 1; j < V; j++) {  // Avoid duplicate edges
+            if (graph[i][j] != 0 && graph[i][j] != INF) {  // Include only valid edges
                 fprintf(f, "    \"%s\" -- \"%s\" [label=\"%d km\"];\n", vertex[i], vertex[j], graph[i][j]);
             }
         }
     }
-
-    // Highlight the shortest path in red with thicker lines
-    int v = dest;
-    while (parent[v] != -1) {  // Traverse back using the parent array to trace the shortest path
+    
+    // Highlight the shortest path in red with thicker edges
+    int v = dest;  // Start from the destination vertex
+    while (parent[v] != -1) {  // Trace back the path using the parent array
         fprintf(f, "    \"%s\" -- \"%s\" [color=red, penwidth=2.0, label=\"%d km\"];\n",
                 vertex[parent[v]], vertex[v], graph[parent[v]][v]);
-        v = parent[v];  // Move to the parent node
+        v = parent[v];  // Move to the parent vertex
     }
-    fprintf(f, "}\n");  // End the .dot file
+    fprintf(f, "}\n");  // End the DOT graph definition
     fclose(f);  // Close the file
-    printf("Graph saved to 'graph.dot'.\n");  // Notify user of successful save
+    printf("Graph saved to 'graph.dot'.\n");  // Notify the user
 }
 
-// Function to print the shortest path from source to vertex `v`
+// Recursive function to print the shortest path using the parent array
 void printPath(int parent[], int v, char *vertex[]) {
-    if (parent[v] == -1) {  // If reached the source, print it
+    if (parent[v] == -1) {  // Base case: source vertex reached
         printf("%s", vertex[v]);
         return;
     }
-    printPath(parent, parent[v], vertex);  // Recursively print parent nodes
-    printf(" -> %s", vertex[v]);  // Print the current node
+    printPath(parent, parent[v], vertex);  // Recursively print the path
+    printf(" -> %s", vertex[v]);  // Print the current vertex
 }
 
-// Function to display the results of Dijkstra's algorithm
+// Function to print the shortest distance, path, and visit sequence
 void printSolution(int dist[], int parent[], char *vertex[], int visitedSequence[], int src, int dest) {
-    printf("\nSource: %s\nDestination: %s\n", vertex[src], vertex[dest]);
-    printf("Shortest Distance: %d\n", dist[dest]);
+    printf("\nSource: %s\nDestination: %s\n", vertex[src], vertex[dest]);  // Print source and destination
+    printf("Shortest Distance: %d\n", dist[dest]);  // Print the shortest distance
     printf("Path: ");
-    printPath(parent, dest, vertex);  // Print the path from source to destination
-    printf("\nVisit Sequence: %d\n", visitedSequence[dest]);  // Print visit sequence
+    printPath(parent, dest, vertex);  // Print the path using the recursive function
+    printf("\nVisit Sequence: %d\n", visitedSequence[dest]);  // Print the visit sequence
 }
 
-// Function to find the index of a vertex by name
+// Function to find the index of a vertex by its name
 int getIndex(char *vertex[], char *name) {
-    for (int i = 0; i < V; i++) {  // Loop through vertex array
-        if (strcmp(vertex[i], name) == 0) {  // If name matches, return index
-            return i;
+    for (int i = 0; i < V; i++) {  // Loop through the vertex array
+        if (strcmp(vertex[i], name) == 0) {  // Compare names
+            return i;  // Return the index if found
         }
     }
-    return -1;  // Return -1 if name not found
+    return -1;  // Return -1 if not found
 }
 
+// Main function to implement Dijkstra's algorithm and visualize the graph
 int main() {
-    // Define vertex names for the clinics
+    // Define the names of the clinics
     char *vertex[V] = {
         "CVRGU", "Hello Pet Cares", "Anisha Pet Care Clinic", "Petvetcure", 
         "Govt. Veterinary Hospital", "Vet Surgery Dept. OUAT", "Bhubaneswar Pet Clinic", 
@@ -78,7 +80,7 @@ int main() {
         "Blue Cross Vet Clinic", "Petland Veterinary Clinic", "Dr. Panda’s Pet Clinic"
     };
 
-    // Adjacency matrix representing distances between clinics
+    // Define the adjacency matrix of the graph
     int graph[V][V] = {
         {0, 12, 15, 12, 14, 15, 16, 14, 15, 14, 20, 13, 15},  // CVRGU
         {12, 0, 5, INF, INF, INF, INF, INF, INF, INF, INF, 10, INF},  // Hello Pet Cares
@@ -95,51 +97,53 @@ int main() {
         {14, INF, INF, INF, 2, INF, INF, 3, INF, INF, INF, INF, 0}   // Dr. Panda’s Pet Clinic
     };
 
-    int dist[V], visited[V], visitedSequence[V], parent[V];  // Declare arrays for distances, visit status, sequence, and parent nodes
-    int src = 0, seq = 1;  // Initialize source index and sequence counter
-    char destName[50];  // String to hold destination clinic name
+    // Initialize arrays for distance, visited nodes, visit sequence, and parent nodes
+    int dist[V], visited[V], visitedSequence[V], parent[V];
+    int src = 0, seq = 1;  // Start with source as the first vertex and sequence as 1
+    char destName[50];  // Buffer to store the destination name
 
-    // Get destination clinic name from the user
+    // Prompt the user to input the destination vertex name
     printf("Enter the destination vertex name (e.g., 'Hello Pet Cares', 'Govt. Veterinary Hospital', etc.): ");
-    scanf(" %[^\n]%*c", destName);  // Read user input
-    int dest = getIndex(vertex, destName);  // Find destination index
-    if (dest == -1) {  // Check for valid input
+    scanf(" %[^\n]%*c", destName);  // Read the destination name from the user
+    int dest = getIndex(vertex, destName);  // Get the index of the destination vertex
+    if (dest == -1) {  // Handle invalid vertex names
         printf("Invalid vertex name entered!\n");
-        return 1;  // Exit if invalid
+        return 1;  // Exit with an error code
     }
 
-    // Initialize distances to INF, visited to 0, sequence to -1, and parent to -1
+    // Initialize the arrays
     for (int i = 0; i < V; i++) {
-        dist[i] = INF;
-        visited[i] = 0;
-        visitedSequence[i] = -1;
-        parent[i] = -1;
+        dist[i] = INF;  // Set all distances to infinity
+        visited[i] = 0;  // Mark all vertices as unvisited
+        visitedSequence[i] = -1;  // Initialize visit sequence as -1
+        parent[i] = -1;  // Set parent nodes as -1
     }
-    dist[src] = 0;  // Set distance of source to itself as 0
+    dist[src] = 0;  // Distance to the source is 0
 
-    // Dijkstra's algorithm implementation
+    // Main loop for Dijkstra's algorithm
     for (int k = 0; k < V - 1; k++) {
-        int min = INF, u = -1;
-        for (int i = 0; i < V; i++) {
+        int min = INF, u = -1;  // Initialize minimum distance and vertex
+        for (int i = 0; i < V; i++) {  // Find the vertex with the smallest distance
             if (!visited[i] && dist[i] < min) {
                 min = dist[i];
                 u = i;
             }
         }
-        if (u == -1) break;  // Break if no reachable vertices
-        visited[u] = 1;  // Mark the selected node as visited
-        visitedSequence[u] = seq++;  // Update visit sequence
+        if (u == -1) break;  // Exit if no reachable vertices are found
+        visited[u] = 1;  // Mark the current vertex as visited
+        visitedSequence[u] = seq++;  // Record the visit sequence
 
-        // Update distances of adjacent vertices
-        for (int v = 0; v < V; v++) {
+        for (int v = 0; v < V; v++) {  // Update distances for adjacent vertices
             if (!visited[v] && graph[u][v] != INF && dist[u] + graph[u][v] < dist[v]) {
-                dist[v] = dist[u] + graph[u][v];
-                parent[v] = u;  // Update parent for path tracking
+                dist[v] = dist[u] + graph[u][v];  // Update distance
+                parent[v] = u;  // Update parent node
             }
         }
     }
 
-    printSolution(dist, parent, vertex, visitedSequence, src, dest);  // Display the solution
-    saveToDotFile(parent, dist, graph, vertex, src, dest);  // Save the result to a .dot file for visualization
-    return 0;
+    // Print the solution (shortest path and details)
+    printSolution(dist, parent, vertex, visitedSequence, src, dest);
+    // Save the graph and shortest path to a DOT file
+    saveToDotFile(parent, dist, graph, vertex, src, dest);
+    return 0;  // Exit the program
 }
