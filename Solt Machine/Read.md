@@ -53,7 +53,7 @@ Fork the Repository: Click the "Fork" button on the top-right corner of this pag
 2. Clone Your Fork: Use the following command to clone the repository to your local machine:
 bash
 
-git clone https://github.com/your-username/slot-machine.git
+code - git clone https://github.com/your-username/slot-machine.git
 
 4. Make Changes: Improve the code, fix bugs, or add new features. Please ensure your code follows best practices and is well-documented.
 5. Test Your Changes: Run the program to ensure everything works as expected.
