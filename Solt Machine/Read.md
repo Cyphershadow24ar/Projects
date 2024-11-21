@@ -48,13 +48,16 @@ check_winnings(columns, lines, bet, values): Calculates winnings based on matchi
 main(): The main game loop for managing balance, user inputs, and game interactions.
 
 # How to Contribute
+
 1. Contributions are welcome! Here’s how you can get involved:
-Fork the Repository: Click the "Fork" button on the top-right corner of this page to create your copy of the repository.
-2. Clone Your Fork: Use the following command to clone the repository to your local machine:
-    bash:git clone https://github.com/your-username/slot-machine.git
-4. Make Changes: Improve the code, fix bugs, or add new features. Please ensure your code follows best practices and is well-documented.
-5. Test Your Changes: Run the program to ensure everything works as expected.
-6. Submit a Pull Request: Push your changes to your fork and open a pull request. Provide a detailed description of your changes and their benefits.
+   - **Fork the Repository:** Click the "Fork" button on the top-right corner of this page to create your copy of the repository.
+2. **Clone Your Fork:** Use the following command to clone the repository to your local machine:
+   ```bash
+   git clone https://github.com/your-username/slot-machine.git
+   
+3. Make Changes: Improve the code, fix bugs, or add new features. Please ensure your code follows best practices and is well-documented.
+4. Test Your Changes: Run the program to ensure everything works as expected.
+5. Submit a Pull Request: Push your changes to your fork and open a pull request. Provide a detailed description of your changes and their benefits.
 
 # Future Enhancements
 Add a graphical interface for better user experience.
