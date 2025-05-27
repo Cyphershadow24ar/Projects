@@ -12,4 +12,5 @@ This Repo has many projects on Different Programming language like C , C++, Pyth
 7. Snake Game - GO lang
 8. Hospital Management System - Python & Mysql
 9. Airline Booking System - C  (Dijkstra's Algorithm)
+10. Madlibs - Python
 
