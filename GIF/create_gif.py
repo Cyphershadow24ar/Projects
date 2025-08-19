@@ -21,3 +21,7 @@ images[0].save(
     duration=500,
     loop=0
 )
+
+# TO RUN :
+# Open the Terminal and run: python3 create_gif.py
+# Make sure you have the imageio and Pillow libraries installed.
