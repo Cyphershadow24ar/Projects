@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connectify - Find Your Perfect Match</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .search-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .search-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .filter-group select, 
+        .filter-group input {
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .search-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+        }
+
+        .profile-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .profile-location {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .profile-body {
+            padding: 1.5rem;
+        }
+
+        .profile-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .profile-tag {
+            background: #f1f2f6;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .profile-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        footer {
+            background: #2d3436;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .form-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-section h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+            border-bottom: 2px solid #ff6b6b;
+            padding-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 0.7rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .search-filters {
+                grid-template-columns: 1fr;
+            }
+
+            .profiles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Connectify</div>
+                <nav>
+                    <ul>
+                        <li><a href="#" onclick="showSection('home')">Home</a></li>
+                        <li><a href="#" onclick="showSection('browse')">Browse</a></li>
+                        <li><a href="#" onclick="showSection('create-profile')">Create Profile</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <section class="hero">
+            <div class="container">
+                <h1>Find Your Perfect Match Today</h1>
+                <p>Connect with like-minded individuals who share your interests, values, and relationship goals.</p>
+                <a href="#" class="btn" onclick="showSection('create-profile')">Create Your Profile</a>
+            </div>
+        </section>
+    </section>
+
+    <!-- Browse Profiles Section -->
+    <section id="browse" class="section" style="display: none;">
+        <div class="container">
+            <section class="search-section">
+                <h2>Find Your Match</h2>
+                <div class="search-filters">
+                    <div class="filter-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender">
+                            <option value="">Any Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="age">Age Range</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="number" id="min-age" placeholder="Min" min="18" max="100">
+                            <input type="number" id="max-age" placeholder="Max" min="18" max="100">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label for="location">Location</label>
+                        <select id="location">
+                            <option value="">Any Location</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Kolkata">Kolkata</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="relationship">Relationship Type</label>
+                        <select id="relationship">
+                            <option value="">Any Type</option>
+                            <option value="Long-term / Serious Relationship">Long-term</option>
+                            <option value="Casual Dating">Casual Dating</option>
+                            <option value="Friendship with Benefits">Friendship with Benefits</option>
+                            <option value="Open to Exploring">Open to Exploring</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="search-actions">
+                    <div>
+                        <input type="text" id="search" placeholder="Search by name, interests, etc." style="padding: 0.7rem; width: 300px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    <button class="btn" onclick="filterProfiles()">Search</button>
+                </div>
+            </section>
+
+            <section class="profiles-section">
+                <h2>Featured Profiles</h2>
+                <div class="profiles-grid" id="profiles-container">
+                    <!-- Profiles will be loaded here by JavaScript -->
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Create Profile Section -->
+    <section id="create-profile" class="section" style="display: none;">
+        <div class="container">
+            <section class="form-section">
+                <h2>Create Your Profile</h2>
+                <form id="profile-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" min="18" max="100" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender-create" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Height (cm)</label>
+                            <input type="number" id="height" min="100" max="250" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input type="text" id="state" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profession">Profession</label>
+                        <input type="text" id="profession" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="languages">Languages You Speak (comma separated)</label>
+                        <input type="text" id="languages" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="religion">Religion</label>
+                        <input type="text" id="religion" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="relationship-status">Current Relationship Status</label>
+                            <select id="relationship-status" required>
+                                <option value="">Select Status</option>
+                                <option value="Single">Single</option>
+                                <option value="In a Relationship">In a Relationship</option>
+                                <option value="It's Complicated">It's Complicated</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dietary-preference">Dietary Preference</label>
+                            <select id="dietary-preference" required>
+                                <option value="">Select Preference</option>
+                                <option value="Vegetarian">Vegetarian</option>
+                                <option value="Non-Vegetarian">Non-Vegetarian</option>
+                                <option value="Eggetarian">Eggetarian</option>
+                                <option value="Vegan">Vegan</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="smoking">Smoking Habit</label>
+                            <select id="smoking" required>
+                                <option value="">Select Habit</option>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="Occasionally">Occasionally</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="drinking">Drinking Habit</label>
+                            <select id="drinking" required>
+                                <option value="">Select Habit</option>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="Occasionally">Occasionally</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="zodiac">Zodiac Sign</label>
+                        <input type="text" id="zodiac" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="movie-genres">Favorite Movie Genres (comma separated)</label>
+                        <input type="text" id="movie-genres" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="music-genres">Favorite Music Genres (comma separated)</label>
+                        <input type="text" id="music-genres" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="food-liked">Type of Food Liked (comma separated)</label>
+                        <input type="text" id="food-liked" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hobbies">Hobbies and Interests (comma separated)</label>
+                        <input type="text" id="hobbies" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date-preference">Who would you like to date?</label>
+                        <select id="date-preference" required>
+                            <option value="">Select Preference</option>
+                            <option value="Men">Men</option>
+                            <option value="Women">Women</option>
+                            <option value="Non-binary people">Non-binary people</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="relationship-type">Type of Relationship Looking For</label>
+                        <select id="relationship-type" required>
+                            <option value="">Select Type</option>
+                            <option value="Long-term / Serious Relationship">Long-term / Serious Relationship</option>
+                            <option value="Casual Dating">Casual Dating</option>
+                            <option value="Friendship with Benefits">Friendship with Benefits</option>
+                            <option value="Open to Exploring">Open to Exploring</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="partner-type">Partner Type</label>
+                        <select id="partner-type" required>
+                            <option value="">Select Type</option>
+                            <option value="Introvert">Introvert</option>
+                            <option value="Extrovert">Extrovert</option>
+                            <option value="Ambivert">Ambivert</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="marriage-views">Views on Marriage</label>
+                        <select id="marriage-views" required>
+                            <option value="">Select View</option>
+                            <option value="Love Marriage">Love Marriage</option>
+                            <option value="Arranged Marriage">Arranged Marriage</option>
+                            <option value="Love-cum-Arranged">Love-cum-Arranged</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="qualities">Top 3 Qualities You Want in a Partner (comma separated)</label>
+                        <input type="text" id="qualities" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dealbreakers">Top 3 Dealbreakers (comma separated)</label>
+                        <input type="text" id="dealbreakers" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="qualities-wanted">Qualities Wanted in Partner (comma separated)</label>
+                        <input type="text" id="qualities-wanted" required>
+                    </div>
+                    
+                    <button type="submit" class="btn">Create Profile</button>
+                </form>
+            </section>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                &copy; 2023 Connectify. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample profiles data
+        let profiles = JSON.parse(localStorage.getItem('profiles')) || [
+    {
+        "id": 1,
+        "name": "Aarav",
+        "age": 42,
+        "gender": "Male",
+        "state": "Uttar Pradesh",
+        "city": "Bangalore",
+        "profession": "Non-Student",
+        "height": 156,
+        "languages": "English, Telugu",
+        "religion": "Muslim",
+        "relationshipStatus": "In a Relationship",
+        "dietaryPreference": "Vegetarian",
+        "smoking": "Occasionally",
+        "drinking": "Yes",
+        "zodiac": "Scorpio",
+        "movieGenres": "Drama, Romance, Sci-Fi, Mystery",
+        "musicGenres": "Bhojpuri, Hip Hop, Classical, Country",
+        "foodLiked": "Continental, Thai, Japanese, Italian, Mexican",
+        "hobbies": "Fitness & Sports, Traveling, Movies & TV Shows, Music, Anime",
+        "datePreference": "Women",
+        "relationshipType": "Open to Exploring",
+        "partnerType": "Ambivert",
+        "marriageViews": "Love-cum-Arranged",
+        "qualities": "Supportive, Understanding, Respectful",
+        "dealbreakers": "Anger issues, Cheating, Ego",
+        "qualitiesWanted": "Physically Attractive, Trustworthy, Financially Stable, Caring & Supportive"
+    },
+    {
+        "id": 2,
+        "name": "Aman",
+        "age": 47,
+        "gender": "Male",
+        "state": "Rajasthan",
+        "city": "Ahmedabad",
+        "profession": "Student",
+        "height": 188,
+        "languages": "Marathi, Punjabi, Bengali",
+        "religion": "Other",
+        "relationshipStatus": "It's Complicated",
+        "dietaryPreference": "Eggetarian",
+        "smoking": "Yes",
+        "drinking": "No",
+        "zodiac": "Taurus",
+        "movieGenres": "Documentary",
+        "musicGenres": "Classical, Indian Classical",
+        "foodLiked": "Indian, Thai, Chinese, Japanese",
+        "hobbies": "Anime, Movies & TV Shows, Reading",
+        "datePreference": "Women",
+        "relationshipType": "Open to Exploring",
+        "partnerType": "Ambivert",
+        "marriageViews": "Arranged Marriage",
+        "qualities": "Trustworthy, Loyal, Loving",
+        "dealbreakers": "Anger issues, Cheating, Ego",
+        "qualitiesWanted": "Caring & Supportive"
+    },
+    {
+        "id": 3,
+        "name": "Aarav",
+        "age": 53,
+        "gender": "Male",
+        "state": "Bihar",
+        "city": "Bangalore",
+        "profession": "Student",
+        "height": 178,
+        "languages": "Punjabi",
+        "religion": "Other",
+        "relationshipStatus": "Single",
+        "dietaryPreference": "Vegetarian",
+        "smoking": "Occasionally",
+        "drinking": "Yes",
+        "zodiac": "Virgo",
+        "movieGenres": "Drama",
+        "musicGenres": "Hip Hop",
+        "foodLiked": "Mexican, Thai, Italian",
+        "hobbies": "Traveling, Fitness & Sports, Anime",
+        "datePreference": "Women",
+        "relationshipType": "Casual Dating",
+        "partnerType": "Ambivert",
+        "marriageViews": "Arranged Marriage",
+        "qualities": "Loyal, Caring, Ambitious",
+        "dealbreakers": "Disrespect, Selfishness, Negativity",
+        "qualitiesWanted": "Trustworthy, Loyal & Honest, Family Oriented"
+    },
+    {
+        "id": 4,
+        "name": "Nikhil",
+        "age": 25,
+        "gender": "Male",
+        "state": "Maharashtra",
+        "city": "Bangalore",
+        "profession": "Non-Student",
+        "height": 183,
+        "languages": "Telugu, Gujarati",
+        "religion": "Sikh",
+        "relationshipStatus": "Single",
+        "dietaryPreference": "Eggetarian",
+        "smoking": "No",
+        "drinking": "Yes",
+        "zodiac": "Capricorn",
+        "movieGenres": "Romance",
+        "musicGenres": "Classical",
+        "foodLiked": "Continental, Chinese, Mexican",
+        "hobbies": "Reading, Fitness & Sports, Traveling, Movies & TV Shows",
+        "datePreference": "Non-binary people",
+        "relationshipType": "Open to Exploring",
+        "partnerType": "Extrovert",
+        "marriageViews": "Arranged Marriage",
+        "qualities": "Supportive, Understanding, Respectful",
+        "dealbreakers": "Lack of communication, Irresponsibility, Immaturity",
+        "qualitiesWanted": "Trustworthy, Loyal & Honest, Caring & Supportive, Financially Stable"
+    },
+    {
+        "id": 5,
+        "name": "Sagar",
+        "age": 21,
+        "gender": "Male",
+        "state": "Gujarat",
+        "city": "Bangalore",
+        "profession": "Student",
+        "height": 169,
+        "languages": "Tamil, Hindi",
+        "religion": "Hindu",
+        "relationshipStatus": "In a Relationship",
+        "dietaryPreference": "Eggetarian",
+        "smoking": "No",
+        "drinking": "No",
+        "zodiac": "Cancer",
+        "movieGenres": "Fantasy",
+        "musicGenres": "Indian Classical, Hip Hop, Jazz, Classical",
+        "foodLiked": "Thai, Chinese, Mexican, Indian, Italian",
+        "hobbies": "Music, Anime, Traveling, Movies & TV Shows, Fitness & Sports",
+        "datePreference": "Women",
+        "relationshipType": "Friendship with Benefits",
+        "partnerType": "Ambivert",
+        "marriageViews": "Love Marriage",
+        "qualities": "Loyal, Caring, Ambitious",
+        "dealbreakers": "Anger issues, Cheating, Ego",
+        "qualitiesWanted": "Trustworthy, Financially Stable, Family Oriented, Physically Attractive, Caring & Supportive"
+    },
+    {
+        "id": 6,
+        "name": "Sandeep",
+        "age": 17,
+        "gender": "Male",
+        "state": "Maharashtra",
+        "city": "Kolkata",
+        "profession": "Student",
+        "height": 156,
+        "languages": "Punjabi",
+        "religion": "Hindu",
+        "relationshipStatus": "It's Complicated",
+        "dietaryPreference": "Non-Vegetarian",
+        "smoking": "No",
+        "drinking": "Occasionally",
+        "zodiac": "Taurus",
+        "movieGenres": "Romance, Drama, Fantasy",
+        "musicGenres": "Classical, Indian Classical, Rock, Folk",
+        "foodLiked": "Chinese",
+        "hobbies": "Traveling, Movies & TV Shows",
+        "datePreference": "Non-binary people",
+        "relationshipType": "Casual Dating",
+        "partnerType": "Introvert",
+        "marriageViews": "Love Marriage",
+        "qualities": "Trustworthy, Loyal, Loving",
+        "dealbreakers": "Dishonesty, Arrogance, Laziness",
+        "qualitiesWanted": "Family Oriented, Physically Attractive"
+    },
+    {
+        "id": 7,
+        "name": "Aman",
+        "age": 55,
+        "gender": "Male",
+        "state": "Uttar Pradesh",
+        "city": "Jaipur",
+        "profession": "Non-Student",
+        "height": 176,
+        "languages": "Punjabi",
+        "religion": "Hindu",
+        "relationshipStatus": "It's Complicated",
+        "dietaryPreference": "Eggetarian",
+        "smoking": "Occasionally",
+        "drinking": "Occasionally",
+        "zodiac": "Capricorn",
+        "movieGenres": "Horror",
+        "musicGenres": "Classical",
+        "foodLiked": "Chinese, Italian, Continental, Mexican, Indian",
+        "hobbies": "Music, Anime, Traveling, Reading",
+        "datePreference": "Men",
+        "relationshipType": "Friendship with Benefits",
+        "partnerType": "Introvert",
+        "marriageViews": "Love-cum-Arranged",
+        "qualities": "Trustworthy, Loyal, Loving",
+        "dealbreakers": "Lack of communication, Irresponsibility, Immaturity",
+        "qualitiesWanted": "Family Oriented, Loyal & Honest, Trustworthy, Financially Stable, Caring & Supportive"
+    },
+    {
+        "id": 8,
+        "name": "Manish",
+        "age": 25,
+        "gender": "Male",
+        "state": "Maharashtra",
+        "city": "Bangalore",
+        "profession": "Non-Student",
+        "height": 173,
+        "languages": "Tamil, Gujarati",
+        "religion": "Christian",
+        "relationshipStatus": "In a Relationship",
+        "dietaryPreference": "Vegan",
+        "smoking": "No",
+        "drinking": "Yes",
+        "zodiac": "Libra",
+        "movieGenres": "Fantasy, Action",
+        "musicGenres": "Hip Hop, Classical",
+        "foodLiked": "Japanese, Thai",
+        "hobbies": "Music, Fitness & Sports",
+        "datePreference": "Non-binary people",
+        "relationshipType": "Long-term / Serious Relationship",
+        "partnerType": "Extrovert",
+        "marriageViews": "Arranged Marriage",
+        "qualities": "Honest, Kind, Funny",
+        "dealbreakers": "Anger issues, Cheating, Ego",
+        "qualitiesWanted": "Trustworthy, Financially Stable"
+    },
+    {
+        "id": 9,
+        "name": "Nikhil",
+        "age": 22,
+        "gender": "Male",
+        "state": "Maharashtra",
+        "city": "Mumbai",
+        "profession": "Non-Student",
+        "height": 171,
+        "languages": "Marathi, Punjabi, English",
+        "religion": "Muslim",
+        "relationshipStatus": "Single",
+        "dietaryPreference": "Non-Vegetarian",
+        "smoking": "Yes",
+        "drinking": "No",
+        "zodiac": "Capricorn",
+        "movieGenres": "Sci-Fi, Thriller, Horror, Romance",
+        "musicGenres": "Indian Classical",
+        "foodLiked": "Continental, Italian",
+        "hobbies": "Anime, Reading, Music, Traveling",
+        "datePreference": "Women",
+        "relationshipType": "Friendship with Benefits",
+        "partnerType": "Extrovert",
+        "marriageViews": "Love Marriage",
+        "qualities": "Supportive, Understanding, Respectful",
+        "dealbreakers": "Anger issues, Cheating, Ego",
+        "qualitiesWanted": "Caring & Supportive, Physically Attractive, Loyal & Honest, Trustworthy"
+    },
+    {
+        "id": 10,
+        "name": "Ankit",
+        "age": 54,
+        "gender": "Male",
+        "state": "Maharashtra",
+        "city": "Lucknow",
+        "profession": "Student",
+        "height": 182,
+        "languages": "Tamil",
+        "religion": "Muslim",
+        "relationshipStatus": "In a Relationship",
+        "dietaryPreference": "Non-Vegetarian",
+        "smoking": "No",
+        "drinking": "No",
+        "zodiac": "Scorpio",
+        "movieGenres": "Thriller",
+        "musicGenres": "Bhojpuri, Folk, Jazz, Indian Classical, Hip Hop",
+        "foodLiked": "Continental, Indian, Japanese",
+        "hobbies": "Fitness & Sports, Music, Traveling, Anime, Reading",
+        "datePreference": "Men",
+        "relationshipType": "Long-term / Serious Relationship",
+        "partnerType": "Extrovert",
+        "marriageViews": "Love-cum-Arranged",
+        "qualities": "Patient, Confident, Optimistic",
+        "dealbreakers": "Anger issues, Cheating, Ego",
+        "qualitiesWanted": "Caring & Supportive, Trustworthy, Loyal & Honest"
+    }
+
+        ];
+
+        // Function to show different sections
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show the selected section
+            document.getElementById(sectionName).style.display = 'block';
+            
+            // If showing browse section, display profiles
+            if (sectionName === 'browse') {
+                displayProfiles(profiles);
+            }
+        }
+
+        // Function to display profiles
+        function displayProfiles(profilesToShow) {
+            const container = document.getElementById('profiles-container');
+            container.innerHTML = '';
+            
+            if (profilesToShow.length === 0) {
+                container.innerHTML = '<p>No profiles found matching your criteria.</p>';
+                return;
+            }
+            
+            profilesToShow.forEach(profile => {
+                const profileCard = document.createElement('div');
+                profileCard.className = 'profile-card';
+                
+                profileCard.innerHTML = `
+                    <div class="profile-header">
+                        <div class="profile-name">${profile.name}, ${profile.age}</div>
+                        <div class="profile-location">${profile.city}, ${profile.state}</div>
+                    </div>
+                    <div class="profile-body">
+                        <div class="profile-details">
+                            <span class="profile-tag">${profile.profession}</span>
+                            <span class="profile-tag">${profile.relationshipStatus}</span>
+                            <span class="profile-tag">${profile.zodiac}</span>
+                        </div>
+                        <p><strong>Looking for:</strong> ${profile.relationshipType}</p>
+                        <p><strong>Interests:</strong> ${profile.hobbies.split(', ').slice(0, 3).join(', ')}</p>
+                    </div>
+                    <div class="profile-footer">
+                        <button class="btn" onclick="viewProfile(${profile.id})">View Profile</button>
+                    </div>
+                `;
+                
+                container.appendChild(profileCard);
+            });
+        }
+
+        // Function to filter profiles based on search criteria
+        function filterProfiles() {
+            const genderFilter = document.getElementById('gender').value;
+            const minAge = document.getElementById('min-age').value;
+            const maxAge = document.getElementById('max-age').value;
+            const locationFilter = document.getElementById('location').value;
+            const relationshipFilter = document.getElementById('relationship').value;
+            const searchText = document.getElementById('search').value.toLowerCase();
+            
+            let filteredProfiles = profiles.filter(profile => {
+                // Gender filter
+                if (genderFilter && profile.gender !== genderFilter) return false;
+                
+                // Age filter
+                if (minAge && profile.age < parseInt(minAge)) return false;
+                if (maxAge && profile.age > parseInt(maxAge)) return false;
+                
+                // Location filter
+                if (locationFilter && profile.city !== locationFilter) return false;
+                
+                // Relationship type filter
+                if (relationshipFilter && profile.relationshipType !== relationshipFilter) return false;
+                
+                // Search text filter
+                if (searchText) {
+                    const searchableText = `${profile.name} ${profile.city} ${profile.state} ${profile.profession} ${profile.hobbies} ${profile.qualities}`.toLowerCase();
+                    if (!searchableText.includes(searchText)) return false;
+                }
+                
+                return true;
+            });
+            
+            displayProfiles(filteredProfiles);
+        }
+
+        // Function to view a profile
+        function viewProfile(id) {
+            const profile = profiles.find(p => p.id === id);
+            if (profile) {
+                alert(`Viewing profile of ${profile.name}\n\nAge: ${profile.age}\nLocation: ${profile.city}, ${profile.state}\nProfession: ${profile.profession}\nLooking for: ${profile.relationshipType}\n\nClick OK to see more details in a real application.`);
+            }
+        }
+
+        // Handle profile form submission
+        document.getElementById('profile-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Create new profile object
+            const newProfile = {
+                id: profiles.length > 0 ? Math.max(...profiles.map(p => p.id)) + 1 : 1,
+                name: document.getElementById('name').value,
+                age: parseInt(document.getElementById('age').value),
+                gender: document.getElementById('gender-create').value,
+                state: document.getElementById('state').value,
+                city: document.getElementById('city').value,
+                profession: document.getElementById('profession').value,
+                height: parseInt(document.getElementById('height').value),
+                languages: document.getElementById('languages').value,
+                religion: document.getElementById('religion').value,
+                relationshipStatus: document.getElementById('relationship-status').value,
+                dietaryPreference: document.getElementById('dietary-preference').value,
+                smoking: document.getElementById('smoking').value,
+                drinking: document.getElementById('drinking').value,
+                zodiac: document.getElementById('zodiac').value,
+                movieGenres: document.getElementById('movie-genres').value,
+                musicGenres: document.getElementById('music-genres').value,
+                foodLiked: document.getElementById('food-liked').value,
+                hobbies: document.getElementById('hobbies').value,
+                datePreference: document.getElementById('date-preference').value,
+                relationshipType: document.getElementById('relationship-type').value,
+                partnerType: document.getElementById('partner-type').value,
+                marriageViews: document.getElementById('marriage-views').value,
+                qualities: document.getElementById('qualities').value,
+                dealbreakers: document.getElementById('dealbreakers').value,
+                qualitiesWanted: document.getElementById('qualities-wanted').value
+            };
+            
+            // Add to profiles array
+            profiles.push(newProfile);
+            
+            // Save to localStorage
+            localStorage.setItem('profiles', JSON.stringify(profiles));
+            
+            // Reset form
+            document.getElementById('profile-form').reset();
+            
+            // Show success message
+            alert('Profile created successfully!');
+            
+            // Show browse section
+            showSection('browse');
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('home');
+        });
+    </script>
+</body>
+</html>
