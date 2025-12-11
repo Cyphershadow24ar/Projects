@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ministry of Law & Justice - Web App</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+        .container {
+            max-width: 375px;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .header img {
+            width: 40px;
+            margin-right: 10px;
+        }
+        .header h1 {
+            font-size: 14px;
+            margin: 0;
+        }
+        .main-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .account-types {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .account-type {
+            text-align: center;
+            width: 80px;
+            cursor: pointer;
+        }
+        .account-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 10px;
+        }
+        .account-icon img {
+            width: 30px;
+            height: 30px;
+        }
+        .account-label {
+            font-size: 12px;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: auto;
+        }
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .login-form {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .back-arrow {
+            font-size: 24px;
+            color: #007bff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background-color: #e6f2ff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+        }
+        .avatar-icon {
+            font-size: 40px;
+            color: #007bff;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .forgot-password {
+            text-align: right;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+        .checkbox-group label {
+            font-size: 12px;
+            color: #333;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="/api/placeholder/40/40" alt="Ministry Logo">
+            <h1>MINISTRY OF LAW & JUSTICE</h1>
+        </header>
+        <div id="frontPage">
+            <img src="/api/placeholder/375/250" alt="Supreme Court" class="main-image">
+            <div class="content">
+                <h2>Create an account</h2>
+                <div class="account-types">
+                    <div class="account-type" onclick="selectAccountType('Public')">
+                        <div class="account-icon">
+                            <img src="/api/placeholder/30/30" alt="Public">
+                        </div>
+                        <div class="account-label">Public</div>
+                    </div>
+                    <div class="account-type" onclick="selectAccountType('Lawyer')">
+                        <div class="account-icon">
+                            <img src="/api/placeholder/30/30" alt="Lawyer">
+                        </div>
+                        <div class="account-label">Lawyer</div>
+                    </div>
+                    <div class="account-type" onclick="selectAccountType('Judge')">
+                        <div class="account-icon">
+                            <img src="/api/placeholder/30/30" alt="Judge">
+                        </div>
+                        <div class="account-label">Judge</div>
+                    </div>
+                </div>
+                <div class="login-link">
+                    <a onclick="showLoginForm()">Already have an account? Login</a>
+                </div>
+            </div>
+        </div>
+        <div id="loginForm" class="login-form" style="display:none;">
+            <span class="back-arrow" onclick="showFrontPage()">←</span>
+            <div class="avatar">
+                <span class="avatar-icon">👤</span>
+            </div>
+            <form onsubmit="return false;">
+                <div class="input-group">
+                    <input type="text" placeholder="Enter Username">
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Enter password">
+                </div>
+                <div class="forgot-password">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms">
+                    <label for="terms">I agree with Terms & Conditions</label>
+                </div>
+                <button type="submit" class="login-btn" onclick="login()">Log In</button>
+            </form>
+            <div class="footer">
+                By continuing, you agree to <a href="#">Bail Reckoner Privacy Policy</a> and <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectAccountType(type) {
+            alert("You selected: " + type + ". Registration form would open here.");
+            // Here you would typically open a registration form for the selected account type
+        }
+
+        function showLoginForm() {
+            document.getElementById('frontPage').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        }
+
+        function showFrontPage() {
+            document.getElementById('frontPage').style.display = 'block';
+            document.getElementById('loginForm').style.display = 'none';
+        }
+
+        function login() {
+            alert("Login functionality would be implemented here.");
+            // Here you would typically handle the login process
+        }
+    </script>
+</body>
+</html>
